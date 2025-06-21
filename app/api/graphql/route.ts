@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client";
 import { NextRequest, NextResponse } from "next/server";
 import { serverClient } from "@/lib/server/server-client";
+import { parse } from "graphql";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -11,22 +11,19 @@ const corsHeaders = {
 export async function POST(request: NextRequest) {
   const { query, variables } = await request.json();
 
+  console.log("debug 1", query);
   try {
     let result;
-    if (query.trim().startWith("mutation")) {
+    if (query.trim().startsWith("mutation")) {
       // handle mutation
       result = await serverClient.mutate({
-        mutation: gql`
-          ${query}
-        `,
+        mutation: parse(query),
         variables,
       });
     } else {
       // handle queries
       result = await serverClient.query({
-        query: gql`
-          ${query}
-        `,
+        query: parse(query),
         variables,
       });
     }

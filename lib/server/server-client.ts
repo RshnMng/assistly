@@ -21,12 +21,14 @@ const defaultOptions: DefaultOptions = {
   },
 };
 
+console.log(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT, "GRAPH ENDPOINT");
+
 export const serverClient = new ApolloClient({
   ssrMode: true,
   link: new HttpLink({
     uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT, // replace with your graphql endpoint
     headers: {
-      Authorization: `Apikey ${process.env.GRAPHQL_TOKEN}`,
+      Authorization: `apikey ${process.env.GRAPH_TOKEN}`,
     },
     fetch,
   }),
