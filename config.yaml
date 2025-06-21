@@ -1,0 +1,4 @@
+configurationset:
+  - configuration:
+      name: postgresql_config
+      uri: postgresql://ep-steep-bird-a5jwvxtc-pooler.us-east-2.aws.neon.tech/asisstly-database?user=asisstly-database_owner&password=npg_SUTgB5rYD0sI
