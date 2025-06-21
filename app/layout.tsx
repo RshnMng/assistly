@@ -15,8 +15,10 @@ export default function RootLayout({
   return (
   <ClerkProvider>
     <html lang="en">
-      <body>
+      <body className="min-h-screen flex">
         {children}
+
+        {/* toaster */}
       </body>
     </html>
     </ClerkProvider>
