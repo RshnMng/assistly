@@ -3,16 +3,8 @@ import {
   InMemoryCache,
   createHttpLink,
   DefaultOptions,
+  HttpLink,
 } from "@apollo/client";
-
-export const BASE_URL =
-  process.env.NODE_ENV !== "development"
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : "http://localhost:3000";
-
-const httpLink = createHttpLink({
-  uri: `${BASE_URL}/api/graphql`, // point to the new api route
-});
 
 const defaultOptions: DefaultOptions = {
   watchQuery: {
@@ -29,10 +21,15 @@ const defaultOptions: DefaultOptions = {
   },
 };
 
-const client = new ApolloClient({
-  link: httpLink,
+export const serverClient = new ApolloClient({
+  ssrMode: true,
+  link: new HttpLink({
+    uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT, // replace with your graphql endpoint
+    headers: {
+      Authorization: `Apikey ${process.env.GRAPHQL_TOKEN}`,
+    },
+    fetch,
+  }),
   cache: new InMemoryCache(),
-  defaultOptions: defaultOptions,
+  defaultOptions,
 });
-
-export default client;
