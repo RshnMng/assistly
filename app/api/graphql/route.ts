@@ -11,7 +11,6 @@ const corsHeaders = {
 export async function POST(request: NextRequest) {
   const { query, variables } = await request.json();
 
-  console.log("debug 1", query);
   try {
     let result;
     if (query.trim().startsWith("mutation")) {
@@ -29,7 +28,6 @@ export async function POST(request: NextRequest) {
     }
 
     const data = result.data;
-    console.log(data, "output data");
     return NextResponse.json(
       {
         data,
@@ -39,7 +37,7 @@ export async function POST(request: NextRequest) {
       }
     );
   } catch (error) {
-    console.log(error, "error message");
+    console.log(error, "error");
     return NextResponse.json(error, {
       status: 500,
     });

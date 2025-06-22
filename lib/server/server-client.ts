@@ -21,8 +21,6 @@ const defaultOptions: DefaultOptions = {
   },
 };
 
-console.log(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT, "GRAPH ENDPOINT");
-
 export const serverClient = new ApolloClient({
   ssrMode: true,
   link: new HttpLink({

@@ -8,9 +8,12 @@ import { CREATE_CHATBOT } from "@/graphql/mutations/ mutations";
 import { useUser } from "@clerk/nextjs";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 function CreateChatbot() {
   const { user, isLoaded } = useUser();
+  console.log(user, "user");
+
   const [name, setName] = useState("");
   const router = useRouter();
 
@@ -20,6 +23,7 @@ function CreateChatbot() {
       variables: {
         clerk_user_id: user?.id,
         name,
+        created_at: new Date().toISOString(),
       },
     }
   );
@@ -31,10 +35,19 @@ function CreateChatbot() {
       return <p>Loading user...</p>;
     }
 
+    if (!user) {
+      router.push(
+        "https://relative-swift-94.accounts.dev/sign-in?redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fcreate-chatbot"
+      );
+      return;
+    }
+
     try {
       const data = await CreateChatbot();
       setName("");
       router.push(`/edit-chatbot/${data.data.insertChatbots.id}`);
+
+      console.log(data, "data", user, "user");
     } catch (error) {
       console.log(error, "error message");
     }
