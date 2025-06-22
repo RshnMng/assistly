@@ -8,7 +8,7 @@ export interface Chatbot {
 }
 
 export interface ChatbotCharacteristic {
-  id: NumberConstructor;
+  id: number;
   chatbot_id: number;
   content: string;
   created_at: string;

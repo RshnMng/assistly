@@ -9,16 +9,18 @@ import { Copy } from "lucide-react";
 import { useParams } from "next/navigation";
 import { toast } from "sonner";
 import Avatar from "../../components/Avatar";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { GET_CHATBOT_BY_ID } from "@/graphql/queries/queries";
 import { GetChatbotByIdResponse } from "@/types/types";
 import { GetChatbotByIdVariables } from "@/types/types";
+import Characteristic from "../../components/Characteristic";
 
 function EditChatbot() {
   const params = useParams() as { id: string };
   const id = Number(params.id);
   const [url, setUrl] = useState<string>("");
   const [chatbotName, setChatbotName] = useState<string>("");
+  const [newCharacteristic, setNewCharacteristic] = useState("");
 
   const { data } = useQuery<GetChatbotByIdResponse, GetChatbotByIdVariables>(
     GET_CHATBOT_BY_ID,
@@ -29,6 +31,8 @@ function EditChatbot() {
     if (data) {
       setChatbotName(data.chatbots.name);
     }
+
+    console.log(data, "use effect data");
   }, [data]);
 
   useEffect(() => {
@@ -73,8 +77,7 @@ function EditChatbot() {
         >
           x
         </Button>
-        <div>
-          <p>{chatbotName}</p>
+        <div className="flex space-x-4">
           <Avatar seed={chatbotName} />
           <form>
             <Input
@@ -82,11 +85,46 @@ function EditChatbot() {
               onChange={(e) => {
                 setChatbotName(e.target.value);
               }}
+              placeholder={chatbotName}
+              className="w-full border-none bg-transparent text-xl font-bold"
+              required
             />
             <Button type="submit" disabled={!chatbotName}>
               Update
             </Button>
           </form>
+        </div>
+
+        <h2 className="text-xl font-bold mt-10">
+          Here is what your AI knows...
+        </h2>
+        <p>
+          Your chatbot is equipped with the following information to assist you
+          in your conversation with you customers and users
+        </p>
+
+        <div>
+          <form>
+            <Input
+              type="text"
+              placeholder="Example: if a customer asks for prices, provide pricing page: www.example.com/pricing"
+              value={newCharacteristic}
+              onChange={(e) => setNewCharacteristic(e.target.value)}
+            />
+            <Button type="submit" disabled={!newCharacteristic}>
+              Add
+            </Button>
+          </form>
+          <ul>
+            {data?.chatbots.chatbot_characteristics.map((characteristic) => {
+              return (
+                <Characteristic
+                  key={characteristic.id}
+                  characteristic={characteristic}
+                />
+              );
+            })}
+          </ul>
         </div>
       </section>
     </div>
