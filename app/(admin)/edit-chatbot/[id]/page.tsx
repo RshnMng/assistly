@@ -16,14 +16,20 @@ import { GetChatbotByIdVariables } from "@/types/types";
 
 function EditChatbot() {
   const params = useParams() as { id: string };
-  const id = params.id;
+  const id = Number(params.id);
   const [url, setUrl] = useState<string>("");
   const [chatbotName, setChatbotName] = useState<string>("");
 
-  const { data, loading, error } = useQuery<
-    GetChatbotByIdResponse,
-    GetChatbotByIdVariables
-  >(GET_CHATBOT_BY_ID, { variables: { id } });
+  const { data } = useQuery<GetChatbotByIdResponse, GetChatbotByIdVariables>(
+    GET_CHATBOT_BY_ID,
+    { variables: { id } }
+  );
+
+  useEffect(() => {
+    if (data) {
+      setChatbotName(data.chatbots.name);
+    }
+  }, [data]);
 
   useEffect(() => {
     const url = `${BASE_URL}/chatbot/${id}`;
@@ -68,7 +74,19 @@ function EditChatbot() {
           x
         </Button>
         <div>
+          <p>{chatbotName}</p>
           <Avatar seed={chatbotName} />
+          <form>
+            <Input
+              value={chatbotName}
+              onChange={(e) => {
+                setChatbotName(e.target.value);
+              }}
+            />
+            <Button type="submit" disabled={!chatbotName}>
+              Update
+            </Button>
+          </form>
         </div>
       </section>
     </div>

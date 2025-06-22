@@ -7,12 +7,12 @@ export const GET_CHATBOT_BY_ID = gql`
       name
       created_at
     }
-    chat_characteristics {
+    chatbot_characteristics(id: $id) {
       id
       content
       created_at
     }
-    chat_sessions {
+    chat_sessions(id: $id) {
       id
       created_at
       messages {

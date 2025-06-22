@@ -43,5 +43,5 @@ export interface GetChatbotByIdResponse {
 }
 
 export interface GetChatbotByIdVariables {
-  id: string;
+  id: number;
 }
