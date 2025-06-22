@@ -8,11 +8,9 @@ import { CREATE_CHATBOT } from "@/graphql/mutations/ mutations";
 import { useUser } from "@clerk/nextjs";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 function CreateChatbot() {
   const { user, isLoaded } = useUser();
-  console.log(user, "user");
 
   const [name, setName] = useState("");
   const router = useRouter();
@@ -46,8 +44,6 @@ function CreateChatbot() {
       const data = await CreateChatbot();
       setName("");
       router.push(`/edit-chatbot/${data.data.insertChatbots.id}`);
-
-      console.log(data, "data", user, "user");
     } catch (error) {
       console.log(error, "error message");
     }

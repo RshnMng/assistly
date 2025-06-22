@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ApolloProviderWrapper from "./(admin)/components/ApolloProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Assistly",
@@ -20,7 +21,7 @@ export default function RootLayout({
           <body className="min-h-screen flex">
             {children}
 
-            {/* toaster */}
+            <Toaster position="bottom-center" />
           </body>
         </html>
       </ClerkProvider>
