@@ -471,7 +471,7 @@ type Mutation {
 }
 
 type Query {
-  chatbotsByUser(clerk_user_id: String!): [Chatbots]
+  chatbotsByUser(clerk_user_id: String!): [chatbots]
     @dbquery(
       type: "postgresql"
       schema: "public"

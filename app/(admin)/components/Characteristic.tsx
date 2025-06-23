@@ -1,6 +1,6 @@
 "use client";
 import { useMutation } from "@apollo/client";
-import { REMOVE_CHARACTERISTIC } from "@/graphql/mutations/ mutations";
+import { REMOVE_CHARACTERISTIC } from "@/graphql/mutations/mutations";
 
 import { ChatbotCharacteristic } from "@/types/types";
 import { OctagonX } from "lucide-react";

@@ -13,10 +13,10 @@ import { useMutation, useQuery } from "@apollo/client";
 import { GET_CHATBOT_BY_ID } from "@/graphql/queries/queries";
 import { GetChatbotByIdResponse } from "@/types/types";
 import { GetChatbotByIdVariables } from "@/types/types";
-import { DELETE_CHATBOT } from "@/graphql/mutations/ mutations";
+import { DELETE_CHATBOT } from "@/graphql/mutations/mutations";
 import Characteristic from "../../components/Characteristic";
-import { ADD_CHARACTERISTIC } from "@/graphql/mutations/ mutations";
-import { UPDATE_CHATBOT } from "@/graphql/mutations/ mutations";
+import { ADD_CHARACTERISTIC } from "@/graphql/mutations/mutations";
+import { UPDATE_CHATBOT } from "@/graphql/mutations/mutations";
 
 function EditChatbot() {
   const params = useParams() as { id: string };

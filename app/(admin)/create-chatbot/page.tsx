@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Avatar from "../components/Avatar";
 import { Input } from "@/components/ui/input";
 import { useMutation } from "@apollo/client";
-import { CREATE_CHATBOT } from "@/graphql/mutations/ mutations";
+import { CREATE_CHATBOT } from "@/graphql/mutations/mutations";
 import { useUser } from "@clerk/nextjs";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
