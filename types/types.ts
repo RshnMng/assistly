@@ -18,7 +18,7 @@ export interface Guest {
   id: number;
   name: string;
   email: string;
-  crerated_at: string;
+  created_at: string;
 }
 
 export interface ChatSession {
@@ -27,7 +27,7 @@ export interface ChatSession {
   guest_id: number | null;
   created_at: string;
   messages: Message[];
-  guests: Guest[];
+  guests: Guest;
 }
 
 export interface Message {

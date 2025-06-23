@@ -7,6 +7,7 @@ import {
   GetUserChatbotsVariables,
 } from "@/types/types";
 import { GET_USER_CHATBOTS } from "@/graphql/queries/queries";
+import ChatbotSessions from "../components/ChatbotSessions";
 
 async function ReviewSession() {
   const user = await auth();
@@ -46,6 +47,7 @@ async function ReviewSession() {
       <h2 className="mb-5">
         Review all the chat sessions the chat bots have had with your customers
       </h2>
+      <ChatbotSessions chatbots={sortedChatbotsByUser} />
     </div>
   );
 }
