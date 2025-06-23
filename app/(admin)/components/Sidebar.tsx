@@ -20,7 +20,7 @@ function Sidebar() {
         </li>
         <li className="flex-1">
           <Link
-            href="view-chatbots"
+            href="/view-chatbots"
             className="hover:opacity-50 flex flex-col text-center lg:text-left lg:flex-row items-center gap-2
                        p-5 rounded-md bg-[#2991EE]"
           >
@@ -33,7 +33,7 @@ function Sidebar() {
         </li>
         <li className="flex-1">
           <Link
-            href="review-sessions"
+            href="/review-sessions"
             className="hover:opacity-50 flex flex-col text-center lg:text-left lg:flex-row items-center gap-2
                        p-5 rounded-md bg-[#2991EE]"
           >
