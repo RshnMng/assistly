@@ -50,3 +50,13 @@ export const ADD_CHARACTERISTIC = gql`
     }
   }
 `;
+
+export const UPDATE_CHATBOT = gql`
+  mutation UpdateChatbot($id: Int!, $name: String!, $created_at: DateTime!) {
+    updateChatbots(id: $id, name: $name, created_at: $created_at) {
+      id
+      name
+      created_at
+    }
+  }
+`;

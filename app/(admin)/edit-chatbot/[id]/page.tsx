@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { BASE_URL } from "@/graphql/ApolloClient";
 import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
@@ -16,6 +16,7 @@ import { GetChatbotByIdVariables } from "@/types/types";
 import { DELETE_CHATBOT } from "@/graphql/mutations/ mutations";
 import Characteristic from "../../components/Characteristic";
 import { ADD_CHARACTERISTIC } from "@/graphql/mutations/ mutations";
+import { UPDATE_CHATBOT } from "@/graphql/mutations/ mutations";
 
 function EditChatbot() {
   const params = useParams() as { id: string };
@@ -33,6 +34,31 @@ function EditChatbot() {
     refetchQueries: ["GetChatbotById"],
   });
 
+  const [updateChatbot] = useMutation(UPDATE_CHATBOT, {
+    refetchQueries: ["GetChatbotById"],
+  });
+
+  const handleChatbot = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const promise = updateChatbot({
+        variables: {
+          id,
+          name: chatbotName,
+          created_at: new Date().toISOString(),
+        },
+      });
+      toast.promise(promise, {
+        loading: "Updating...",
+        success: "Chatbot name updated!",
+        error: "Failed to name Chatbot",
+      });
+    } catch (error) {
+      console.log(error, "error message");
+    }
+  };
+
   const { data, loading, error } = useQuery<
     GetChatbotByIdResponse,
     GetChatbotByIdVariables
@@ -42,8 +68,6 @@ function EditChatbot() {
     if (data) {
       setChatbotName(data.chatbots.name);
     }
-
-    console.log(data, "use effect data");
   }, [data]);
 
   useEffect(() => {
@@ -85,8 +109,6 @@ function EditChatbot() {
           created_at: new Date().toISOString(),
         },
       });
-
-      console.log(promise, "promise");
 
       toast.promise(promise, {
         loading: "Adding...",
@@ -149,7 +171,7 @@ function EditChatbot() {
         </Button>
         <div>
           <Avatar seed={chatbotName} />
-          <form>
+          <form onSubmit={(e) => handleChatbot(e)}>
             <Input
               value={chatbotName}
               onChange={(e) => {
