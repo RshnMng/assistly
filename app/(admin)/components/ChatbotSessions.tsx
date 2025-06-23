@@ -22,11 +22,9 @@ function ChatbotSessions({ chatbots }: { chatbots: Chatbot[] }) {
     setSortedChatbots(sortedArray);
   }, [chatbots]);
 
-  console.log(chatbots, "chatbots");
-
   return (
     <>
-      <div>
+      <div className="bg-white">
         <Accordion type="single" collapsible>
           {sortedChatbots.map((chatbot) => {
             const hasSessions = chatbot.chat_sessions.length > 0;
@@ -54,20 +52,16 @@ function ChatbotSessions({ chatbots }: { chatbots: Chatbot[] }) {
                     <AccordionContent className="space-y-5 p-5 bg-gray-100 rounded-md">
                       {chatbot.chat_sessions.map((session) => {
                         return (
-                          <>
-                            <Link
-                              href={`/review-sessions/${session.id}`}
-                              key={session.id}
-                              className="relative p-10 bg-[#2991EE] text-white rounded-mb block"
-                            >
-                              <p className="absolute top-5 right-5 text-sm">
-                                {session.guests?.email || "No email provided"}
-                              </p>
-                              <ReactTimeago
-                                date={new Date(session.created_at)}
-                              />
-                            </Link>
-                          </>
+                          <Link
+                            href={`/review-sessions/${session.id}`}
+                            key={session.id}
+                            className="relative p-10 bg-[#2991EE] text-white rounded-mb block"
+                          >
+                            <p className="absolute top-5 right-5 text-sm">
+                              {session.guests?.email || "No email provided"}
+                            </p>
+                            <ReactTimeago date={new Date(session.created_at)} />
+                          </Link>
                         );
                       })}
                     </AccordionContent>
