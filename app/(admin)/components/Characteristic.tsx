@@ -17,23 +17,27 @@ function Characteristic({
 
   const handleRemoveCharacteristic = async () => {
     try {
-      await removeCharacteristic({
+      return await removeCharacteristic({
         variables: {
-          id: characteristic.id,
+          characteristicId: characteristic.id,
         },
       });
     } catch (error) {
-      console.log(error);
+      console.log(error, "this error was ran in remove chars func");
     }
   };
 
   return (
-    <li className="relative p-10 bg-white border rounded-md m-5">
+    <li
+      key={characteristic.id}
+      className="relative p-10 bg-white border rounded-md m-5"
+    >
       {characteristic.content}
       <OctagonX
         className="w-6 h-6 stroke-black fill-red-500 absolute top-1 right-1 cursor-pointer hover:opacity-50 rotate-135"
         onClick={() => {
           const promise = handleRemoveCharacteristic();
+          console.log(promise, "promise");
           toast.promise(promise, {
             loading: "Removing...",
             success: "Characteristic removed",

@@ -147,7 +147,7 @@ function EditChatbot() {
         >
           x
         </Button>
-        <div className="flex space-x-4">
+        <div>
           <Avatar seed={chatbotName} />
           <form>
             <Input
@@ -173,13 +173,14 @@ function EditChatbot() {
           in your conversation with you customers and users
         </p>
 
-        <div>
+        <div className="p-5 md:p-5 rounded-md mt-5">
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleAddCharacteristic(newCharacteristic);
               setNewCharacteristic("");
             }}
+            className="flex space-x-2 mb-5"
           >
             <Input
               type="text"
