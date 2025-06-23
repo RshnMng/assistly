@@ -53,12 +53,12 @@ async function ViewChatbots() {
           </div>
         )}
 
-        <ul>
+        <ul className="flex flex-col space-y-5">
           {sortedChatbotsByUser.map((chatbot) => {
             return (
               <Link key={chatbot.id} href={`edit-chatbot/${chatbot.id}`}>
-                <li>
-                  <div>
+                <li className="relative p-10 border rounded-md max-w-1xl bg-white m-3">
+                  <div className="flex justify-beteween items-center">
                     <div className="flex items-center space-x-4 m-8">
                       <Avatar seed={chatbot.name} />
                       <h2 className="text-xl font-bold"> {chatbot.name}</h2>
@@ -67,6 +67,34 @@ async function ViewChatbots() {
                     <p className="absolute top-5 right-5 text-xs text-gray-400">
                       Created: {new Date(chatbot.created_at).toLocaleString()}
                     </p>
+                  </div>
+
+                  <hr className="mt-2" />
+
+                  <div className="gird grid-cols-2 gap-10 md:gap-5 p-5">
+                    <h3 className="italic">Characteristics: </h3>
+
+                    <ul className="text-sm">
+                      {!chatbot.chatbot_characteristics.length && (
+                        <p>No characteristics added yet.</p>
+                      )}
+
+                      {chatbot.chatbot_characteristics.map((characteristic) => {
+                        return (
+                          <li
+                            className="list-disc break-words"
+                            key={characteristic.id}
+                          >
+                            {characteristic.content}
+                          </li>
+                        );
+                      })}
+                    </ul>
+
+                    <div className="bg-blue-200 mt-4 text-center border border-blue-500 rounded-md">
+                      <h3 className="italic">No of Sessions:</h3>
+                      <p>{chatbot.chat_sessions.length}</p>
+                    </div>
                   </div>
                 </li>
               </Link>
