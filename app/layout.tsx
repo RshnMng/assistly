@@ -20,7 +20,6 @@ export default function RootLayout({
         <html lang="en">
           <body className="min-h-screen flex">
             {children}
-
             <Toaster position="bottom-center" />
           </body>
         </html>
