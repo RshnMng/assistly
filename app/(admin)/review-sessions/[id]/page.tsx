@@ -32,7 +32,7 @@ async function reviewOneSession({
   console.log("sane check 1", messages);
 
   return (
-    <div className="flex-1 p-10 pb-24">
+    <div className="flex-1 p-10 pb-24 flex flex-col">
       <h1 className="text-xl lg:text-3xl font-semibold">Session Review</h1>
 
       <p className="font-light text-xs text-purple-600 mt-2">

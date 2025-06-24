@@ -26,7 +26,7 @@ function Messages({
 
   console.log(user, "this is user");
   return (
-    <div>
+    <div className=" flex flex-col md:max-w-3xl lg:min-w-3xl lg:self-center">
       {messages.map((message) => {
         const isSender = message.sender !== "user";
         console.log(message, "sane check - message");
@@ -36,8 +36,8 @@ function Messages({
             key={message.id}
             className={`${
               isSender
-                ? "chat-bubble-secondary bg-blue-700  text-gray-300 rounded"
-                : "chat-bubble-primary bg-blue-300 text-blue-900 rounded justify-end"
+                ? "chat-bubble-secondary bg-blue-700  text-gray-300 rounded max-w-sm"
+                : "chat-bubble-primary bg-blue-300 text-blue-900 rounded justify-end self-end max-w-sm  border border-red-500"
             } relative flex m-6 p-2`}
           >
             {isReviewsPage && (
