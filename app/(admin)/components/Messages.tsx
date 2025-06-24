@@ -25,7 +25,9 @@ function Messages({
           <div
             key={message.id}
             className={`${
-              isSender ? "bg-green-500 " : "bg-orange-500 justify-end"
+              isSender
+                ? "chat-bubble-secondary bg-blue-700  text-gray-300 rounded"
+                : "chat-bubble-primary bg-blue-300 text-blue-900 rounded justify-end"
             } relative flex m-6 p-2`}
           >
             {isReviewsPage && (
@@ -50,17 +52,6 @@ function Messages({
                 </div>
               )}
             </div>
-
-            {/* <p
-              className={`chat-bubble 
-                    ${
-                      isSender
-                        ? "chat-bubble-primary bg-[#4D7DFB] text-white"
-                        : "chat-bubble-secondary text-red-700"
-                    }`}
-            >
-              whats goodie?
-            </p> */}
           </div>
         );
       })}
