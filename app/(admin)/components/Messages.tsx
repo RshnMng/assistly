@@ -118,17 +118,7 @@ function Messages({
                             <th {...props} className="text-left underline" />
                           );
                         },
-                        p: ({ node, ...props }) => {
-                          return (
-                            <p
-                              {...props}
-                              className={`whitespace-break-spaces mb-5 ${
-                                message.content === "Thinking..." &&
-                                "animate-pulse"
-                              } ${isSender ? "text-white" : "text-gray-700"}`}
-                            />
-                          );
-                        },
+
                         a: ({ node, ...props }) => {
                           return (
                             <a
