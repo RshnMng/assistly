@@ -1,12 +1,21 @@
+"use client";
+
 import Link from "next/link";
 import Avatar from "./Avatar";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-// import { useAuth } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/nextjs";
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 function Header() {
-  // const { isLoaded, isSignedIn } = useAuth();
+  const { isSignedIn, isLoaded } = useAuth();
 
-  console.log(isSignedIn, "is signed in");
+  useEffect(() => {
+    if (!isSignedIn && isLoaded === true) {
+      redirect(`/login`);
+    }
+  }, [isSignedIn]);
+
   return (
     <header className="bg-white shadow-sm text-gray-800 flex justify-between p-5">
       <Link href="/" className="flex items-center text-4xl font-thin">

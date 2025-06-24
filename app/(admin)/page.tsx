@@ -1,14 +1,7 @@
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default async function Home() {
-  const { userId } = await auth();
-
-  if (!userId) {
-    return redirect(`/login`);
-  }
   return (
     <>
       <main className="p-10 bg-white m-10 rouded-md w-full">
