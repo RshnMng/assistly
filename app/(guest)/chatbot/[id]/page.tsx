@@ -8,11 +8,14 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useState, use } from "react";
-import { Message } from "@/types/types";
+import { GetChatbotByIdResponse, Message } from "@/types/types";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import startNewChat from "@/lib/startNewChat";
+import Avatar from "@/app/(admin)/components/Avatar";
+import { useQuery } from "@apollo/client";
+import { GET_CHATBOT_BY_ID } from "@/graphql-backup/queries/queries";
 
 function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   const [name, setName] = useState("");
@@ -23,13 +26,21 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const { id } = use(params);
 
+  const { data: chatBotData } = useQuery(
+    GET_CHATBOT_BY_ID,
+
+    {
+      variables: { id },
+    }
+  );
+
   const handleInformationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     const chatId = await startNewChat(name, email, Number(id));
 
-    // setChatId(chatId);
+    setChatId(chatId);
     setLoading(false);
     setIsOpen(false);
   };
@@ -82,6 +93,21 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
           </form>
         </DialogContent>
       </Dialog>
+
+      <div className="flex flex-col w-full max-w-3xl mx-auto bg-white md:rounded-t-lg shadow-2xl md:mt-10">
+        <div className="pb-4 border-b sticky top-0 z-50 bg-[#407DFB] py-5 px-10 text-white md:rounded-t-lg flex items-center space-x-4">
+          <Avatar
+            seed={chatBotData?.chatbots.name}
+            className="h-12 w-12 bg-white rounded-full border-2 border-white"
+          />
+          <div>
+            <h1 className="truncate text-lg">{chatBotData?.chatbots.name}</h1>
+            <p className="text-sm text-gray-300">
+              *Typically replies instantly
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

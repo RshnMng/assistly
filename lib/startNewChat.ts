@@ -31,7 +31,20 @@ async function startNewChat(
       },
     });
 
-    console.log(chatSessionResult, "chat-result");
+    const chatSessionId = chatSessionResult.data.insertChat_sessions.id;
+
+    await client.mutate({
+      mutation: INSERT_MESSAGE,
+      variables: {
+        chat_session_id: chatSessionId,
+        sender: "ai",
+        content: `Welcome ${guestName}! \n How can I assist you today?`,
+      },
+    });
+
+    console.log("new chat session started successfully");
+
+    return chatSessionId;
   } catch (error) {
     console.log(error, "error starting new chat session");
   }
