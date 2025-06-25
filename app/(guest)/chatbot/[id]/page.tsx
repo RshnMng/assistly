@@ -97,6 +97,71 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
     }
   }, [loadingQuery]);
 
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    const { message: formMessage } = values;
+
+    const message = formMessage;
+    form.reset();
+
+    if (!name || !email) {
+      setIsOpen(true);
+      setIsLoading(false);
+      return;
+    }
+
+    if (!message.trim()) {
+      return;
+    }
+
+    const userMessage: Message = {
+      id: Date.now(),
+      content: message,
+      created_at: new Date().toISOString(),
+      chat_session_id: chatId,
+      sender: "user",
+    };
+
+    const loadingMessage: Message = {
+      id: Date.now() + 1,
+      content: "Thinking...",
+      created_at: new Date().toISOString(),
+      chat_session_id: chatId,
+      sender: "ai",
+    };
+
+    setMessages((prevMessages) => {
+      return [...prevMessages, userMessage, loadingMessage];
+    });
+
+    try {
+      const response = await fetch("api/send-message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          chat_session_id: chatId,
+          chatbot_id: id,
+          content: message,
+        }),
+      });
+
+      const result = await response.json();
+
+      setMessages((prevMessages) => {
+        return prevMessages.map((msg) => {
+          return msg.id === loadingMessage.id
+            ? { ...msg, content: result.content, id: result.id }
+            : msg;
+        });
+      });
+    } catch (error) {
+      console.log(error, "error sending message");
+    }
+  };
+
   return (
     <div className="w-full flex bg-gray-100">
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -173,7 +238,10 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
           )}
         </div>
         <Form {...form}>
-          <form className="flex items-start sticky bottom-0 z-50 space-x-4 drop-shadow-lg p-4 lg-gray-100 rounded-md">
+          <form
+            className="flex items-start sticky bottom-0 z-50 space-x-4 drop-shadow-lg p-4 lg-gray-100 rounded-md"
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
             <FormField
               control={form.control}
               name="message"
