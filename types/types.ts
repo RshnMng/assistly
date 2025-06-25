@@ -81,8 +81,8 @@ export interface GetChatSessionMessagesResponse {
   };
 }
 
-export interface GetChatSessionMessagesVariables {
-  id: number;
+export interface GetChatSessionMessagesIdVariables {
+  chat_session_id: number;
 }
 
 export interface MessagesByChatSessionsResponse {

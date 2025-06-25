@@ -16,7 +16,7 @@ import Avatar from "@/app/(admin)/components/Avatar";
 import { useQuery } from "@apollo/client";
 import { GET_CHATBOT_BY_ID } from "@/graphql-backup/queries/queries";
 import { GET_MESSAGES_BY_CHAT_SESSION_ID } from "@/graphql/queries/queries";
-import { GetChatSessionMessagesVariables } from "@/types/types";
+import { GetChatSessionMessagesIdVariables } from "@/types/types";
 import { GetChatSessionMessagesResponse } from "@/types/types";
 import Messages from "@/app/(admin)/components/Messages";
 import { Chatbot } from "@/types/types";
@@ -27,7 +27,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   const [isOpen, setIsOpen] = useState(true);
   const [email, setEmail] = useState("");
   const [chatId, setChatId] = useState(0);
-  const [, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const param = use(params);
   const id = Number(param.id);
@@ -60,19 +60,20 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
     loading: loadingQuery,
     error,
     data: messageData,
-  } = useQuery<GetChatSessionMessagesResponse, GetChatSessionMessagesVariables>(
-    GET_MESSAGES_BY_CHAT_SESSION_ID,
-    {
-      variables: { id: chatId },
-      skip: !chatId,
-    }
-  );
+  } = useQuery<
+    GetChatSessionMessagesResponse,
+    GetChatSessionMessagesIdVariables
+  >(GET_MESSAGES_BY_CHAT_SESSION_ID, {
+    variables: { chat_session_id: chatId },
+    skip: !chatId,
+  });
 
   useEffect(() => {
-    if (messageData) {
-      setMessages(data.chat_sessions.messages);
+    if (!loadingQuery && messageData) {
+      setMessages(messageData.chat_sessions.messages);
+      console.log(error, "error");
     }
-  }, [data]);
+  }, [loadingQuery]);
 
   return (
     <div className="w-full flex bg-gray-100">
@@ -115,8 +116,8 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit" disabled={!name || !email || loading}>
-                {!loading ? "Continue" : "Loading..."}
+              <Button type="submit" disabled={!name || !email || isLoading}>
+                {!isLoading ? "Continue" : "Loading..."}
               </Button>
             </DialogFooter>
           </form>
