@@ -135,7 +135,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
     });
 
     try {
-      const response = await fetch("api/send-message", {
+      const response = await fetch("/api/send-message", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -147,6 +147,8 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
           content: message,
         }),
       });
+
+      console.log("response yuurur fetch", response);
 
       const result = await response.json();
 
@@ -260,7 +262,8 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
                   </FormItem>
                 );
               }}
-            />
+            ></FormField>
+
             <Button type="submit" className="h-full">
               Send
             </Button>
