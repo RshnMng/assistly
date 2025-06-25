@@ -61,6 +61,7 @@ function Messages({
                     seed={chatbotName}
                     className="h-12 w-12 bg-white rounded-full border-2 border-[#2991EE]"
                   />
+                  {/* make a markdown  file and put mark down stylings / import on to this file and then protect agains non string content to prevent crashing */}
 
                   <p className="pt-3 ml-2">
                     <ReactMarkdown
