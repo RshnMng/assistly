@@ -43,11 +43,11 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
     }
   }, [loading]);
 
-  console.log(chatbotData, "data");
-
   const handleInformationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
+    console.log("handle information is running");
 
     const chatId = await startNewChat(name, email, Number(id));
 

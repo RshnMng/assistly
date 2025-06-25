@@ -34,12 +34,10 @@ function Messages({
     }
   }, [messages]);
 
-  console.log(user, "this is user");
   return (
     <div className=" flex flex-col md:max-w-3xl lg:min-w-3xl lg:self-center overflow-y-auto">
       {messages.map((message) => {
         const isSender = message.sender !== "user";
-        console.log(message, "sane check - message");
 
         return (
           <div

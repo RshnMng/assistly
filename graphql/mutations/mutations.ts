@@ -66,11 +66,13 @@ export const INSERT_MESSAGE = gql`
     $chat_session_id: Int!
     $content: String!
     $sender: String!
+    $created_at: DateTime!
   ) {
     insertMessages(
       chat_session_id: $chat_session_id
       content: $content
       sender: $sender
+      created_at: $created_at
     ) {
       id
       content

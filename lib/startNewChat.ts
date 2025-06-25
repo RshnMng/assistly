@@ -1,5 +1,4 @@
 import client from "@/graphql/ApolloClient";
-import { gql } from "@apollo/client";
 import { INSERT_MESSAGE } from "@/graphql/mutations/mutations";
 import { INSERT_GUESTS } from "@/graphql/mutations/mutations";
 import { INSERT_CHAT_SESSION } from "@/graphql/mutations/mutations";
@@ -9,6 +8,7 @@ async function startNewChat(
   guestEmail: string,
   chatbotId: number
 ) {
+  console.log("start new chat has ran");
   try {
     const guestResult = await client.mutate({
       mutation: INSERT_GUESTS,
@@ -20,7 +20,6 @@ async function startNewChat(
     });
 
     const guestId = guestResult.data.insertGuests.id;
-    console.log(chatbotId, "chatbot id");
 
     const chatSessionResult = await client.mutate({
       mutation: INSERT_CHAT_SESSION,
@@ -39,10 +38,9 @@ async function startNewChat(
         chat_session_id: chatSessionId,
         sender: "ai",
         content: `Welcome ${guestName}! \n How can I assist you today?`,
+        created_at: new Date().toISOString(),
       },
     });
-
-    console.log("new chat session started successfully");
 
     return chatSessionId;
   } catch (error) {
