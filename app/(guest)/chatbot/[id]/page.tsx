@@ -21,6 +21,17 @@ import { GetChatSessionMessagesResponse } from "@/types/types";
 import Messages from "@/app/(admin)/components/Messages";
 import { Chatbot } from "@/types/types";
 import { Message } from "@/types/types";
+import { z } from "zod";
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  FormControl,
+} from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Form } from "@/components/ui/form";
 
 function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   const [name, setName] = useState("");
@@ -32,6 +43,17 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   const param = use(params);
   const id = Number(param.id);
   const [chatbotData, setChatBot] = useState<Chatbot>();
+
+  const formSchema = z.object({
+    message: z.string().min(2, "Your Message is too short!"),
+  });
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      message: "",
+    },
+  });
 
   const { data, loading } = useQuery(GET_CHATBOT_BY_ID, {
     variables: { id },
@@ -124,7 +146,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
         </DialogContent>
       </Dialog>
 
-      <div className="flex flex-col w-full max-w-3xl mx-auto bg-white md:rounded-t-lg shadow-2xl md:mt-10">
+      <div className="flex flex-col h-screen max-w-3xl mx-auto bg-white md:rounded-t-lg shadow-2xl md:mt-10">
         <div className="pb-4 border-b sticky top-0 z-50 bg-[#407DFB] py-5 px-10 text-white md:rounded-t-lg flex items-center space-x-4">
           {chatbotData?.name && (
             <Avatar
@@ -141,13 +163,41 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
           </div>
         </div>
 
-        {chatbotData?.name && (
-          <Messages
-            messages={messages}
-            chatbotName={chatbotData.name}
-            chatSessionId={chatId}
-          />
-        )}
+        <div className="flex-1 overflow-y-auto px-4 py-2">
+          {chatbotData?.name && (
+            <Messages
+              messages={messages}
+              chatbotName={chatbotData.name}
+              chatSessionId={chatId}
+            />
+          )}
+        </div>
+        <Form {...form}>
+          <form className="flex items-start sticky bottom-0 z-50 space-x-4 drop-shadow-lg p-4 lg-gray-100 rounded-md">
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel className="sr-only">message</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Type a message..."
+                        {...field}
+                        className="p-8"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
+            <Button type="submit" className="h-full">
+              Send
+            </Button>
+          </form>
+        </Form>
       </div>
     </div>
   );
