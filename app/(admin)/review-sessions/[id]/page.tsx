@@ -6,8 +6,12 @@ import Messages from "../../components/Messages";
 
 export const dynamic = "force-dynamic";
 
-async function reviewOneSession({ params }: { params: { id: string } }) {
-  const id = params.id;
+async function reviewOneSession({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const {
     data: {
       chat_sessions: {
