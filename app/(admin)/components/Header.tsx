@@ -14,7 +14,7 @@ function Header() {
     if (!isSignedIn && isLoaded === true) {
       redirect(`/login`);
     }
-  }, [isSignedIn]);
+  }, [isSignedIn, isLoaded]);
 
   return (
     <header className="bg-white shadow-sm text-gray-800 flex justify-between p-5">

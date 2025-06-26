@@ -71,8 +71,7 @@ function EditChatbot() {
   }, [data]);
 
   useEffect(() => {
-    // const url = `${BASE_URL}/chatbot/${id}`;
-    const url = `http://localhost:3000/chatbot/${id}`;
+    const url = `${BASE_URL}/chatbot/${id}`;
 
     setUrl(url);
   }, [id]);
@@ -96,7 +95,7 @@ function EditChatbot() {
         error: "Failed to delete chatbot",
       });
     } catch (error) {
-      console.error("Error deleting chatbot: error");
+      console.log("Error deleting chatbot: error");
       toast.error("Failed to delete chatbot");
     }
   };

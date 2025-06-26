@@ -17,7 +17,7 @@ export default async function Home() {
 
         <Link href="/create-chatbot">
           <Button className="bg-[#6485F5]">
-            Let's get started by creating your first chatbot
+            Lets get started by creating your first chatbot
           </Button>
         </Link>
       </main>

@@ -16,7 +16,6 @@ import { useRef, useEffect } from "react";
 function Messages({
   messages,
   chatbotName,
-  chatSessionId,
 }: {
   messages: Message[];
   chatbotName: string;

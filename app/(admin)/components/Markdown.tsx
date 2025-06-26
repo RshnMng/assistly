@@ -6,24 +6,24 @@ function Markdown({ children }: { children: string }) {
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
-        ul: ({ node, ...props }) => {
+        ul: ({ ...props }) => {
           return <ul {...props} className="list-disc list-inside ml-5 mb-5" />;
         },
-        ol: ({ node, ...props }) => {
+        ol: ({ ...props }) => {
           return (
             <ol {...props} className="list-decimal list-inside ml-5 mb-5" />
           );
         },
-        h1: ({ node, ...props }) => {
+        h1: ({ ...props }) => {
           return <h1 {...props} className="text-2xl font-bold mb-5" />;
         },
-        h2: ({ node, ...props }) => {
+        h2: ({ ...props }) => {
           return <h2 {...props} className="text-xl font-bold mb-5" />;
         },
-        h3: ({ node, ...props }) => {
+        h3: ({ ...props }) => {
           return <h3 {...props} className="text-lg front-bold mb-5" />;
         },
-        table: ({ node, ...props }) => {
+        table: ({ ...props }) => {
           return (
             <table
               {...props}
@@ -31,11 +31,11 @@ function Markdown({ children }: { children: string }) {
             />
           );
         },
-        th: ({ node, ...props }) => {
+        th: ({ ...props }) => {
           return <th {...props} className="text-left underline" />;
         },
 
-        a: ({ node, ...props }) => {
+        a: ({ ...props }) => {
           return (
             <a
               {...props}

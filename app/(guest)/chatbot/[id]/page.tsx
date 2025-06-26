@@ -70,7 +70,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
     if (!loading) {
       setChatBot(data?.chatbots);
     }
-  }, [loading]);
+  }, [loading, data?.chatbots]);
 
   const handleInformationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,9 +99,8 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   useEffect(() => {
     if (!loadingQuery && messageData) {
       setMessages(messageData.chat_sessions.messages);
-      console.log(error, "error");
     }
-  }, [loadingQuery]);
+  }, [loadingQuery, error, messageData]);
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
