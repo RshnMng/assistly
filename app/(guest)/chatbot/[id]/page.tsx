@@ -46,13 +46,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   const param = use(params);
   const id = Number(param.id);
   const [chatbotData, setChatBot] = useState<Chatbot>();
-
-  useEffect(() => {
-    if (!isOpen) {
-      setName("");
-      setEmail("");
-    }
-  }, [isOpen]);
+  const [signedIn, setSignedIn] = useState(false);
 
   const formSchema = z.object({
     message: z.string().min(2, "Your Message is too short!"),
@@ -81,6 +75,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   const handleInformationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setSignedIn(true);
 
     const chatId = await startNewChat(name, email, Number(id));
 
@@ -115,7 +110,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
     const message = formMessage;
     form.reset();
 
-    if (!name || !email) {
+    if (!name || !email || !signedIn) {
       setIsOpen(true);
       setIsLoading(false);
       return;
