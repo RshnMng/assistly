@@ -44,6 +44,13 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   const id = Number(param.id);
   const [chatbotData, setChatBot] = useState<Chatbot>();
 
+  useEffect(() => {
+    if (!isOpen) {
+      setName("");
+      setEmail("");
+    }
+  }, [isOpen]);
+
   const formSchema = z.object({
     message: z.string().min(2, "Your Message is too short!"),
   });
@@ -145,8 +152,6 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
           content: message,
         }),
       });
-
-      console.log("response yuurur fetch", response);
 
       const result = await response.json();
 
@@ -282,3 +287,8 @@ export default ChatbotPage;
 /// debug : when loggin in to chat, if you dont sign anything in and close out the dialog popup right away and try and chat - another popup will emerge, but if you fill out some of the input fields and then close it without clicking send button - and then send a message - the message will
 // go through and cause an error -- set a different an additional check and
 // add key to div thats throwing an error because it doesnt have a key
+
+// finish adding types so code can stop yelling
+// make 404 page for if someone goes to a page we dont have
+// deploy
+// change base url back to deployed url and not localhost
