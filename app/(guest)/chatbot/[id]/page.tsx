@@ -290,7 +290,5 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
 }
 export default ChatbotPage;
 
-// finish adding types so code can stop yelling
-// make 404 page for if someone goes to a page we dont have
 // deploy
 // change base url back to deployed url and not localhost
