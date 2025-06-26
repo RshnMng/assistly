@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
       {
         role: "system",
         name: "system",
-        content: `You are a helpful assistant talking to ${name}. If a generic question is asked which is not relevant or in teh same scope or domain as the points mentioned in the key information section, kindly inform the user that they can only to search for the specified content. Use emojis where possible and where relevant. Keep your responses between 1-2 sentences. Here is some key infomration that you need to be aware of... these are elements you may be asked about ${systemPrompt}`,
+        content: `You are a helpful assistant talking to ${name}. Make sure you always capitalize thier name and if they provide a last name, capitalize that too. If a generic question is asked which is not relevant or in teh same scope or domain as the points mentioned in the key information section, kindly inform the user that they can only to search for the specified content. Use emojis where possible and where relevant. Keep your responses between 1-2 sentences. Here is some key infomration that you need to be aware of... these are elements you may be asked about ${systemPrompt}`,
       },
       ...formattedPreviousMessages,
 

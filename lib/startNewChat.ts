@@ -8,7 +8,8 @@ async function startNewChat(
   guestEmail: string,
   chatbotId: number
 ) {
-  console.log("start new chat has ran");
+  const trimmedName = smartCapitalize(guestName);
+
   try {
     const guestResult = await client.mutate({
       mutation: INSERT_GUESTS,
@@ -37,7 +38,7 @@ async function startNewChat(
       variables: {
         chat_session_id: chatSessionId,
         sender: "ai",
-        content: `Welcome ${guestName}! \n How can I assist you today?`,
+        content: `Welcome ${trimmedName}! \n How can i assist you today?`,
         created_at: new Date().toISOString(),
       },
     });
@@ -48,3 +49,16 @@ async function startNewChat(
   }
 }
 export default startNewChat;
+
+function smartCapitalize(input: string): string {
+  const trimmed = input.trim();
+
+  if (!trimmed.includes(" ")) {
+    return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
+  }
+
+  return trimmed
+    .split(/\s+/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
