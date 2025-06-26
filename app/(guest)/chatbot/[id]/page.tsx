@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useState, use, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -36,15 +36,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 
-function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
+function ChatbotPage({ params }: { params: { id: string } }) {
   const [name, setName] = useState("");
   const [isOpen, setIsOpen] = useState(true);
   const [email, setEmail] = useState("");
   const [chatId, setChatId] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const param = use(params);
-  const id = Number(param.id);
+  const id = Number(params.id);
+
   const [chatbotData, setChatBot] = useState<Chatbot>();
   const [signedIn, setSignedIn] = useState(false);
 
@@ -283,6 +283,3 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   );
 }
 export default ChatbotPage;
-
-// deploy
-// change base url back to deployed url and not localhost

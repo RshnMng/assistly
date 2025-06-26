@@ -95,7 +95,7 @@ function EditChatbot() {
         error: "Failed to delete chatbot",
       });
     } catch (error) {
-      console.log("Error deleting chatbot: error");
+      console.log(`Error deleting chatbot: ${error}`);
       toast.error("Failed to delete chatbot");
     }
   };

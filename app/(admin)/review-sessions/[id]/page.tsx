@@ -6,11 +6,8 @@ import Messages from "../../components/Messages";
 
 export const dynamic = "force-dynamic";
 
-async function reviewOneSession({
-  params: { id },
-}: {
-  params: { id: string };
-}) {
+async function reviewOneSession({ params }: { params: { id: string } }) {
+  const id = params.id;
   const {
     data: {
       chat_sessions: {
@@ -28,8 +25,6 @@ async function reviewOneSession({
     query: GET_CHAT_SESSION_MESSAGES,
     variables: { id: parseInt(id as string) },
   });
-
-  console.log("sane check 1", messages);
 
   return (
     <div className="flex-1 p-10 pb-24 flex flex-col">
