@@ -69,8 +69,6 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
     e.preventDefault();
     setIsLoading(true);
 
-    console.log("handle information is running");
-
     const chatId = await startNewChat(name, email, Number(id));
 
     setChatId(chatId);
@@ -165,20 +163,22 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   };
 
   return (
-    <div className="w-full flex bg-gray-100">
+    <div className="w-full flex bg-pink-400 ">
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent>
+        <DialogContent className="bg-blue-800">
           <form onSubmit={handleInformationSubmit}>
             <DialogHeader>
-              <DialogTitle>Lets help you out!</DialogTitle>
-              <DialogDescription>
+              <DialogTitle className="text-center text-white font-bold mr-25">
+                Lets help you out!
+              </DialogTitle>
+              <DialogDescription className="text-center text-white font-bold">
                 I just need a few details to get started.
               </DialogDescription>
             </DialogHeader>
 
             <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
+              <div className="grid grid-cols-4 items-center gap-4 mr-25">
+                <Label htmlFor="name" className="text-right text-blue-300">
                   Name
                 </Label>
                 <Input
@@ -186,12 +186,12 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
-                  className="col-span-3"
+                  className="col-span-3 bg-blue-200 text-blue-800 font-bold"
                 />
               </div>
 
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="username" className="text-right">
+              <div className="grid grid-cols-4 items-center gap-4 mr-25">
+                <Label htmlFor="username" className="text-right text-blue-300">
                   Email
                 </Label>
                 <Input
@@ -200,12 +200,16 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="ReadySetGrandma@123.com"
-                  className="col-span-3"
+                  className="col-span-3 bg-blue-200 text-blue-800 font-bold"
                 />
               </div>
             </div>
             <DialogFooter>
-              <Button type="submit" disabled={!name || !email || isLoading}>
+              <Button
+                type="submit"
+                disabled={!name || !email || isLoading}
+                className="w-full"
+              >
                 {!isLoading ? "Continue" : "Loading..."}
               </Button>
             </DialogFooter>
@@ -230,7 +234,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-4 py-2">
+        <div className="flex-1 overflow-y-auto px-4 py-2 bg-blue-200">
           {chatbotData?.name && (
             <Messages
               messages={messages}
@@ -241,7 +245,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
         </div>
         <Form {...form}>
           <form
-            className="flex items-start sticky bottom-0 z-50 space-x-4 drop-shadow-lg p-4 lg-gray-100 rounded-md"
+            className="flex items-start sticky bottom-0 z-50 space-x-4 drop-shadow-lg p-4 lg-gray-100 rounded-md bg-blue-500"
             onSubmit={form.handleSubmit(onSubmit)}
           >
             <FormField
@@ -255,7 +259,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
                       <Input
                         placeholder="Type a message..."
                         {...field}
-                        className="p-8"
+                        className="p-8 border w-md text-blue-800 font-bold bg-blue-100"
                       />
                     </FormControl>
                     <FormMessage />
@@ -264,7 +268,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
               }}
             ></FormField>
 
-            <Button type="submit" className="h-full">
+            <Button type="submit" className="h-full max-h-16">
               Send
             </Button>
           </form>
@@ -274,3 +278,7 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   );
 }
 export default ChatbotPage;
+
+/// debug : when loggin in to chat, if you dont sign anything in and close out the dialog popup right away and try and chat - another popup will emerge, but if you fill out some of the input fields and then close it without clicking send button - and then send a message - the message will
+// go through and cause an error -- set a different an additional check and
+// add key to div thats throwing an error because it doesnt have a key

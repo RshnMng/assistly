@@ -71,7 +71,8 @@ function EditChatbot() {
   }, [data]);
 
   useEffect(() => {
-    const url = `${BASE_URL}/chatbot/${id}`;
+    // const url = `${BASE_URL}/chatbot/${id}`;
+    const url = `http://localhost:3000/chatbot/${id}`;
 
     setUrl(url);
   }, [id]);
@@ -144,6 +145,7 @@ function EditChatbot() {
         <div className="flex items-center space-x-2">
           <Link
             href={url}
+            target="_blank"
             className="w-full cursor-pointer hover:opacity-50% bg-white"
           >
             <Input value={url} readOnly className="cursor-pointer" />
@@ -161,7 +163,7 @@ function EditChatbot() {
           </Button>
         </div>
       </div>
-      <section className="relative mt-5 bg-pink-400 p-5 md:p-10 rounded-lg">
+      <section className="relative mt-5 bg-blue-200 p-5 md:p-10 rounded-lg">
         <Button
           variant="destructive"
           className="absolute top-2 right-2 h-8 w-2 cursor-pointer hover:opacity-75"
@@ -178,10 +180,14 @@ function EditChatbot() {
                 setChatbotName(e.target.value);
               }}
               placeholder={chatbotName}
-              className="w-full border-none bg-transparent text-xl font-bold"
+              className="w-56 border-none bg-white my-4 text-xl font-bold"
               required
             />
-            <Button type="submit" disabled={!chatbotName}>
+            <Button
+              className="cursor-pointer"
+              type="submit"
+              disabled={!chatbotName}
+            >
               Update
             </Button>
           </form>
@@ -209,8 +215,13 @@ function EditChatbot() {
               placeholder="Example: if a customer asks for prices, provide pricing page: www.example.com/pricing"
               value={newCharacteristic}
               onChange={(e) => setNewCharacteristic(e.target.value)}
+              className="bg-white"
             />
-            <Button type="submit" disabled={!newCharacteristic}>
+            <Button
+              type="submit"
+              disabled={!newCharacteristic}
+              className="cursor-pointer"
+            >
               Add
             </Button>
           </form>

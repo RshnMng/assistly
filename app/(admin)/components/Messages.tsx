@@ -34,7 +34,7 @@ function Messages({
   }, [messages]);
 
   return (
-    <div className=" flex flex-col md:max-w-3xl lg:min-w-3xl lg:self-center overflow-y-auto">
+    <div className=" flex flex-col md:max-w-3xl max-w-[527px] lg:self-center overflow-y-auto bg-blue-100 h-full">
       {messages.map((message) => {
         const isSender = message.sender !== "user";
 
@@ -43,9 +43,9 @@ function Messages({
             key={message.id}
             className={`${
               isSender
-                ? "chat-bubble-secondary bg-blue-700  text-gray-300 rounded max-w-sm"
-                : "chat-bubble-primary bg-blue-300 text-blue-900 rounded justify-end self-end max-w-sm"
-            } relative flex m-6 p-2`}
+                ? "chat-bubble-secondary bg-blue-800  text-gray-300 rounded max-w-sm indent-6 pb-4 pl-6 pr-2 pt-2"
+                : "chat-bubble-primary bg-blue-300 text-blue-900 rounded justify-end self-end max-w-sm py-2 pl-3 pr-2"
+            } relative flex m-6 font-bold `}
           >
             {isReviewsPage && (
               <p className="absolute -bottom-5 text-xs text-purple-800">
@@ -58,7 +58,7 @@ function Messages({
                 <div className="flex">
                   <Avatar
                     seed={chatbotName}
-                    className="h-12 w-12 bg-white rounded-full border-2 border-[#2991EE]"
+                    className="h-9 w-10 bg-white rounded-full border-2 border-[#2991EE] absolute top-3 left-2"
                   />
 
                   <div className="pt-3 ml-2">
