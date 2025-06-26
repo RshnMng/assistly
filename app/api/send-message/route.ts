@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import { serverClient } from "@/lib/server/server-client";
 import { INSERT_MESSAGE } from "@/graphql/mutations/mutations";
+import { ChatbotCharacteristic, Message } from "@/types/types";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_AI_KEY,
@@ -38,16 +39,18 @@ export async function POST(req: NextRequest) {
 
     const previousMessages = messageData.chat_sessions.messages;
 
-    const formattedPreviousMessages = previousMessages.map((message) => {
-      return {
-        role: message.sender === "ai" ? "system" : "user",
-        name: message.sender === "ai" ? "system" : "user",
-        content: message.content,
-      };
-    });
+    const formattedPreviousMessages = previousMessages.map(
+      (message: Message) => {
+        return {
+          role: message.sender === "ai" ? "system" : "user",
+          name: message.sender === "ai" ? "system" : "user",
+          content: message.content,
+        };
+      }
+    );
 
     const systemPrompt = chatbot.chatbot_characteristics
-      .map((c) => c.content)
+      .map((c: ChatbotCharacteristic) => c.content)
       .join(" + ");
 
     const messages = [

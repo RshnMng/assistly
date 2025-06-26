@@ -43,7 +43,7 @@ export interface GetChatbotByIdResponse {
 }
 
 export interface GetChatbotByIdVariables {
-  chatSessionId: string;
+  id: number;
 }
 
 export interface GetChatbotsByUserData {

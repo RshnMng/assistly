@@ -16,7 +16,10 @@ import Avatar from "@/app/(admin)/components/Avatar";
 import { useQuery } from "@apollo/client";
 import { GET_CHATBOT_BY_ID } from "@/graphql-backup/queries/queries";
 import { GET_MESSAGES_BY_CHAT_SESSION_ID } from "@/graphql/queries/queries";
-import { GetChatSessionMessagesIdVariables } from "@/types/types";
+import {
+  GetChatbotByIdResponse,
+  GetChatSessionMessagesIdVariables,
+} from "@/types/types";
 import { GetChatSessionMessagesResponse } from "@/types/types";
 import Messages from "@/app/(admin)/components/Messages";
 import { Chatbot } from "@/types/types";
@@ -62,13 +65,16 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
     },
   });
 
-  const { data, loading } = useQuery(GET_CHATBOT_BY_ID, {
-    variables: { id },
-  });
+  const { data, loading } = useQuery<GetChatbotByIdResponse>(
+    GET_CHATBOT_BY_ID,
+    {
+      variables: { id },
+    }
+  );
 
   useEffect(() => {
     if (!loading) {
-      setChatBot(data.chatbots);
+      setChatBot(data?.chatbots);
     }
   }, [loading]);
 
@@ -283,10 +289,6 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   );
 }
 export default ChatbotPage;
-
-/// debug : when loggin in to chat, if you dont sign anything in and close out the dialog popup right away and try and chat - another popup will emerge, but if you fill out some of the input fields and then close it without clicking send button - and then send a message - the message will
-// go through and cause an error -- set a different an additional check and
-// add key to div thats throwing an error because it doesnt have a key
 
 // finish adding types so code can stop yelling
 // make 404 page for if someone goes to a page we dont have
