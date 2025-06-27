@@ -113,3 +113,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error }, { status: 500 });
   }
 }
+
+// --------------------------------------------------------------------------------
+// i should add a limit to how big the information can be that can be added as a
+// characteristic -- like whole wikipedia pages -- because if the characteristic is too big -- it will break -- do before production
+
+// also fix mobile display so its not as awkard...the mobile chat display is a bit too big
