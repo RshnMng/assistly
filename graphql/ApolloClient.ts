@@ -6,10 +6,9 @@ import {
 } from "@apollo/client";
 
 export const BASE_URL =
-  "https://bumate.us-east-a.ibm.stepzen.net/api/modest-crocodile";
-// process.env.NODE_ENV !== "development"
-//   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-//   : "http://localhost:3000";
+  process.env.NODE_ENV !== "development"
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : "http://localhost:3000";
 
 const httpLink = createHttpLink({
   uri: `${BASE_URL}/graphql`, // point to the new api route

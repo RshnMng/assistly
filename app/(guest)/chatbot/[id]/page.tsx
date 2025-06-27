@@ -16,6 +16,8 @@ import Avatar from "@/app/(admin)/components/Avatar";
 import { useQuery } from "@apollo/client";
 import { GET_CHATBOT_BY_ID } from "@/graphql-backup/queries/queries";
 import { GET_MESSAGES_BY_CHAT_SESSION_ID } from "@/graphql/queries/queries";
+import { useParams } from "next/navigation";
+
 import {
   GetChatbotByIdResponse,
   GetChatSessionMessagesIdVariables,
@@ -36,14 +38,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 
-function ChatbotPage({ params }: { params: { id: string } }) {
+function ChatbotPage() {
   const [name, setName] = useState("");
   const [isOpen, setIsOpen] = useState(true);
   const [email, setEmail] = useState("");
   const [chatId, setChatId] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const id = Number(params.id);
+  const params = useParams();
+  const id = Number(params?.id);
 
   const [chatbotData, setChatBot] = useState<Chatbot>();
   const [signedIn, setSignedIn] = useState(false);
