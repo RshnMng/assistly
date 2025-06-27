@@ -5,9 +5,11 @@ import {
   DefaultOptions,
 } from "@apollo/client";
 
+const vercelUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
+
 export const BASE_URL =
-  process.env.NODE_ENV !== "development"
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  process.env.NODE_ENV !== "development" && vercelUrl
+    ? `https://${vercelUrl}`
     : "http://localhost:3000";
 
 const httpLink = createHttpLink({
