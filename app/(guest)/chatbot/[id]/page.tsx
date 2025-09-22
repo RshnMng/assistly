@@ -171,7 +171,7 @@ function ChatbotPage() {
   };
 
   return (
-    <div className="w-full flex bg-pink-400 ">
+    <div className="w-full flex  bg-[#04151F]">
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="bg-blue-800">
           <form onSubmit={handleInformationSubmit}>
@@ -225,7 +225,7 @@ function ChatbotPage() {
         </DialogContent>
       </Dialog>
 
-      <div className="flex flex-col h-screen max-w-3xl mx-auto bg-white md:rounded-t-lg shadow-2xl md:mt-10">
+      <div className="flex flex-col h-screen max-w-3xl mx-auto md:rounded-t-lg shadow-2xl md:mt-10 p-6 bg-[#04151F]">
         <div className="pb-4 border-b sticky top-0 z-50 bg-[#407DFB] py-5 px-10 text-white md:rounded-t-lg flex items-center space-x-4">
           {chatbotData?.name && (
             <Avatar
@@ -253,7 +253,7 @@ function ChatbotPage() {
         </div>
         <Form {...form}>
           <form
-            className="flex items-start sticky bottom-0 z-50 space-x-4 drop-shadow-lg p-4 lg-gray-100 rounded-md bg-blue-500"
+            className="flex items-start sticky bottom-0 z-50 space-x-4 drop-shadow-lg p-4 lg-gray-100 rounded-md rounded-t-none bg-blue-500"
             onSubmit={form.handleSubmit(onSubmit)}
           >
             <FormField

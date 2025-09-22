@@ -42,8 +42,8 @@ function Messages({
             key={message.id}
             className={`${
               isSender
-                ? "chat-bubble-secondary bg-blue-800  text-gray-300 rounded max-w-sm indent-6 pb-4 pl-6 pr-2 pt-2"
-                : "chat-bubble-primary bg-blue-300 text-blue-900 rounded justify-end self-end max-w-sm py-2 pl-3 pr-2"
+                ? "chat-bubble-secondary bg-blue-800  text-gray-300 rounded-3xl max-w-sm pl-12 pr-6 pb-4"
+                : "chat-bubble-primary bg-blue-300 text-blue-900 rounded-2xl justify-end self-end max-w-sm py-2 pl-5 pr-2"
             } relative flex m-6 font-bold `}
           >
             {isReviewsPage && (
@@ -54,13 +54,13 @@ function Messages({
             )}
             <div>
               {isSender ? (
-                <div className="flex">
+                <div className="flex pb-1">
                   <Avatar
                     seed={chatbotName}
-                    className="h-9 w-10 bg-white rounded-full border-2 border-[#2991EE] absolute top-3 left-2"
+                    className="h-9 w-10 bg-white rounded-full border-2 border-[#2991EE] absolute top-3 left-2 pt-2"
                   />
 
-                  <div className="pt-3 ml-2">
+                  <div className="pt-4 ml-2">
                     <Markdown>{message.content}</Markdown>
                   </div>
                 </div>
