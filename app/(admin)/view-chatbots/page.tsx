@@ -64,9 +64,13 @@ async function ViewChatbots() {
                         <Avatar seed={chatbot.name} className="mr-4" />
                         <h2 className="text-xl font-bold"> {chatbot.name}</h2>
                       </div>
-                      <div className="relative right-17">
+                      <div className="relative right-17 flex flex-col">
                         <p className="italic text-xs mt-1 ">
-                          click logo to edit bot
+                          click logo to edit bot or
+                        </p>
+                        <p className="italic text-xs text-center">
+                          {" "}
+                          share link{" "}
                         </p>
                       </div>
                     </div>
