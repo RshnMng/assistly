@@ -16,7 +16,7 @@ export default async function Home() {
         </h2>
 
         <Link href="/create-chatbot">
-          <Button className="bg-[#6485F5]">
+          <Button className="bg-[#6485F5] cursor-pointer">
             Lets get started by creating your first chatbot
           </Button>
         </Link>
