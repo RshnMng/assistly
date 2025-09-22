@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
         "Content-Type": "application/json",
       },
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error("GraphQL Error:", error);
 
     return new NextResponse(

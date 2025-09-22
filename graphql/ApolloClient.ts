@@ -7,13 +7,10 @@ import {
 
 const vercelUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
 
-export const BASE_URL =
-  process.env.NODE_ENV !== "development" && vercelUrl
-    ? `https://${vercelUrl}`
-    : "http://localhost:3000";
+const BASE_URL = "";
 
 const httpLink = createHttpLink({
-  uri: `${BASE_URL}/api/graphql`, // point to the new api route
+  uri: `${BASE_URL}/api/graphql`,
   headers: {
     Authorization:
       "apikey bumate::local.net+1000::ea93f403d148d87f3fcd8342c6fb6ab113b528a06b40a8af5292f80b136fccb2",
