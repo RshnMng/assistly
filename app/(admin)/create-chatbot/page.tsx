@@ -65,7 +65,17 @@ function CreateChatbot() {
             type="text"
             required
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              const capitalized = value.replace(
+                /\w\S*/g,
+                (word) =>
+                  word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+              );
+
+              console.log(capitalized, "caps");
+              setName(capitalized);
+            }}
           />
           <Button
             type="submit"

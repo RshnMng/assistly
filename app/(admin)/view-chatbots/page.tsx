@@ -58,20 +58,19 @@ async function ViewChatbots() {
             return (
               <Link key={chatbot.id} href={`edit-chatbot/${chatbot.id}`}>
                 <li className="relative p-10 border rounded-md max-w-1xl bg-white m-3">
-                  <div className="flex justify-beteween items-center">
-                    <div className="flex  flex-col items-center space-x-4 m-8">
-                      <div className="flex items-center pb-1">
-                        <Avatar seed={chatbot.name} className="mr-4" />
-                        <h2 className="text-xl font-bold"> {chatbot.name}</h2>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center  m-8">
+                      <div className="flex items-center pb-1  flex-col">
+                        <Avatar seed={chatbot.name} className="mr-3" />
+                        <div className="flex flex-col text-center pr-2">
+                          <p className="italic text-xs mt-1 ">
+                            click logo to edit bot or
+                          </p>
+                          <p className="italic text-xs"> share link </p>
+                        </div>
                       </div>
-                      <div className="relative right-17 flex flex-col">
-                        <p className="italic text-xs mt-1 ">
-                          click logo to edit bot or
-                        </p>
-                        <p className="italic text-xs text-center">
-                          {" "}
-                          share link{" "}
-                        </p>
+                      <div className="relative flex flex-col justify-start w-1/2 text-center flex-start min-w-32">
+                        <h2 className="text-xl font-bold"> {chatbot.name}</h2>
                       </div>
                     </div>
 
