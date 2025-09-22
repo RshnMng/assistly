@@ -39,8 +39,8 @@ function Sidebar() {
           >
             <SearchIcon />
             <div className="hidden md:inline">
-              <p className="text-xl">Edit</p>
-              <p className="text-sm font-extralight">Chatbots</p>
+              <p className="text-xl">Review</p>
+              <p className="text-sm font-extralight">Sessions</p>
             </div>
           </Link>
         </li>
