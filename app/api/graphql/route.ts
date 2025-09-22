@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { serverClient } from "@/lib/server/server-client";
 import { parse } from "graphql";
 
-export async function OPTIONS(request: NextRequest) {
+export async function OPTIONS() {
   const allowedOrigin = "https://www.assist-rm.com";
 
   const corsHeaders = {
