@@ -2,24 +2,33 @@ import { NextRequest, NextResponse } from "next/server";
 import { serverClient } from "@/lib/server/server-client";
 import { parse } from "graphql";
 
-const allowedOrigin = "https://www.assist-rm.com";
+export async function OPTIONS(request: NextRequest) {
+  const allowedOrigin = "https://www.assist-rm.com";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": allowedOrigin,
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization",
-};
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  };
 
-export async function OPTIONS() {
-  // Handle preflight requests
-  return NextResponse.json(null, {
-    status: 204,
-    headers: corsHeaders,
+  const response = new NextResponse(null, { status: 204 });
+  Object.entries(corsHeaders).forEach(([key, value]) => {
+    response.headers.set(key, value);
   });
+
+  return response;
 }
 
 export async function POST(request: NextRequest) {
   const { query, variables } = await request.json();
+
+  const allowedOrigin = "https://www.assist-rm.com";
+
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  };
 
   try {
     let result;
