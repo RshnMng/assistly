@@ -57,7 +57,7 @@ function Messages({
                 <div className="flex pb-1">
                   <Avatar
                     seed={chatbotName}
-                    className="h-9 w-10 bg-white rounded-full border-2 border-[#2991EE] absolute top-3 left-2 pt-2"
+                    className="h-9 w-10 bg-white rounded-full border-2 border-[#2991EE] absolute top-3 left-2"
                   />
 
                   <div className="pt-4 ml-2">
