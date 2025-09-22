@@ -3,7 +3,7 @@ import { serverClient } from "@/lib/server/server-client";
 import { parse } from "graphql";
 
 export async function OPTIONS() {
-  console.log("OPTIONS request received");
+  console.log("OPTIONS request received and gere ut us");
   const allowedOrigin = "https://www.assist-rm.com";
 
   const corsHeaders = {
