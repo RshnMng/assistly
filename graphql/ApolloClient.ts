@@ -7,7 +7,7 @@ import {
 
 const vercelUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
 
-const BASE_URL = "";
+export const BASE_URL = "";
 
 const httpLink = createHttpLink({
   uri: `${BASE_URL}/api/graphql`,
