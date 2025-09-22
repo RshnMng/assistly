@@ -123,7 +123,7 @@ function EditChatbot() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-full w-full bg-pink-500">
+      <div className="flex items-center justify-center h-full w-full">
         <div className="animate-spin p-10">
           <Avatar seed="PAPAFAM Support Agent" />
         </div>
@@ -173,7 +173,7 @@ function EditChatbot() {
           x
         </Button>
         <div>
-          <Avatar seed={chatbotName} />
+          <Avatar seed={chatbotName} className="bg-blue-200 ml-15" />
           <form onSubmit={(e) => handleChatbot(e)}>
             <Input
               value={chatbotName}
@@ -181,11 +181,11 @@ function EditChatbot() {
                 setChatbotName(e.target.value);
               }}
               placeholder={chatbotName}
-              className="w-56 border-none bg-white my-4 text-xl font-bold"
+              className="w-56 border-none bg-white my-4 text-xl font-bold text-center"
               required
             />
             <Button
-              className="cursor-pointer"
+              className="cursor-pointer ml-18"
               type="submit"
               disabled={!chatbotName}
             >
@@ -194,7 +194,7 @@ function EditChatbot() {
           </form>
         </div>
 
-        <h2 className="text-xl font-bold mt-10">
+        <h2 className="text-xl font-bold mt-10 mb-4">
           Here is what your AI knows...
         </h2>
         <p>

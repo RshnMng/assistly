@@ -67,7 +67,11 @@ function CreateChatbot() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <Button type="submit" disabled={loading || !name}>
+          <Button
+            type="submit"
+            disabled={loading || !name}
+            className="cursor-pointer"
+          >
             {loading ? "Creating Chatbot..." : "Create Chatbot"}
           </Button>
         </form>

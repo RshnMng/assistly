@@ -72,9 +72,11 @@ async function ViewChatbots() {
                   <hr className="mt-2" />
 
                   <div className="gird grid-cols-2 gap-10 md:gap-5 p-5">
-                    <h3 className="italic">Characteristics: </h3>
+                    <h3 className="italic text-center mb-5 text-lg font-mono">
+                      Characteristics:{" "}
+                    </h3>
 
-                    <ul className="text-sm">
+                    <ul className="text-sm list-none">
                       {!chatbot.chatbot_characteristics.length && (
                         <p>No characteristics added yet.</p>
                       )}
@@ -82,7 +84,7 @@ async function ViewChatbots() {
                       {chatbot.chatbot_characteristics.map((characteristic) => {
                         return (
                           <li
-                            className="list-disc break-words"
+                            className=" break-words border-4 border-blue-400 bg-blue-300 p-5 mb-2 text-base rounded-md"
                             key={characteristic.id}
                           >
                             {characteristic.content}
