@@ -2,11 +2,21 @@ import { NextRequest, NextResponse } from "next/server";
 import { serverClient } from "@/lib/server/server-client";
 import { parse } from "graphql";
 
+const allowedOrigin = "https://www.assist-rm.com";
+
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": allowedOrigin,
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
+
+export async function OPTIONS() {
+  // Handle preflight requests
+  return NextResponse.json(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
 
 export async function POST(request: NextRequest) {
   const { query, variables } = await request.json();
@@ -40,6 +50,7 @@ export async function POST(request: NextRequest) {
     console.log(error, "error");
     return NextResponse.json(error, {
       status: 500,
+      headers: corsHeaders,
     });
   }
 }

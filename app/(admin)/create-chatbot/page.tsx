@@ -73,7 +73,6 @@ function CreateChatbot() {
                   word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
               );
 
-              console.log(capitalized, "caps");
               setName(capitalized);
             }}
           />
