@@ -34,7 +34,7 @@ async function ViewChatbots() {
 
   return (
     <>
-      <div className="flex-1 pb-20 p-10 xl:bg-pink-400 lg:bg-blue-500 md:bg-green-500 sm:bg-red-700 xs:bg-yellow-400">
+      <div className="flex-1 pb-20 p-10 xl:bg-pink-400 lg:bg-blue-500 md:bg-green-500 sm:bg-red-700">
         <h1 className="text-xl lg:text-3xl font-semibold mb-5">
           Active Chatbots
         </h1>
@@ -103,7 +103,7 @@ async function ViewChatbots() {
                       })}
                     </ul>
 
-                    <div className="bg-blue-200 mt-4 text-center border border-blue-500 rounded-md">
+                    <div className="bg-blue-200 mt-4 text-center border border-blue-500 rounded-md max-w-2xl">
                       <h3 className="italic">No of Sessions:</h3>
                       <p>{chatbot.chat_sessions.length}</p>
                     </div>
