@@ -235,7 +235,7 @@ function EditChatbot() {
               Add
             </Button>
           </form>
-          <ul className="flex flex-wrap-reverse gap-5">
+          <ul className="flex flex-wrap-reverse gap-5 w-full">
             {data?.chatbots.chatbot_characteristics.map((characteristic) => {
               return (
                 <Characteristic

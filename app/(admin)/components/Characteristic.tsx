@@ -30,7 +30,7 @@ function Characteristic({
   return (
     <li
       key={characteristic.id}
-      className="relative p-10 bg-white border rounded-md m-5"
+      className="relative p-4 bg-white border rounded-md max-w-full break-words"
     >
       {characteristic.content}
       <OctagonX
