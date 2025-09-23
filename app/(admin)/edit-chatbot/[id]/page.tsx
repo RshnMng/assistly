@@ -24,6 +24,7 @@ function EditChatbot() {
   const [url, setUrl] = useState<string>("");
   const [chatbotName, setChatbotName] = useState<string>("");
   const [newCharacteristic, setNewCharacteristic] = useState("");
+  const [basePath, setBasePath] = useState<string>("");
 
   const [deleteChatbot] = useMutation(DELETE_CHATBOT, {
     refetchQueries: ["GetChatbotById"],
@@ -72,6 +73,10 @@ function EditChatbot() {
 
   useEffect(() => {
     const url = `${BASE_URL}/chatbot/${id}`;
+
+    const currentlocation = window.location.href;
+    const basePath = currentlocation.split("/edit")[0];
+    setBasePath(basePath);
 
     setUrl(url);
   }, [id]);
@@ -145,17 +150,21 @@ function EditChatbot() {
         </p>
         <div className="flex items-center space-x-2">
           <Link
-            href={url}
+            href={`${basePath}${url}`}
             target="_blank"
             className="w-full cursor-pointer hover:opacity-50% bg-white"
           >
-            <Input value={url} readOnly className="cursor-pointer" />
+            <Input
+              value={`${basePath}${url}`}
+              readOnly
+              className="cursor-pointer"
+            />
           </Link>
           <Button
             size="sm"
             className="px-3"
             onClick={() => {
-              navigator.clipboard.writeText(url);
+              navigator.clipboard.writeText(`${basePath}${url}`);
               toast.success("Copied to clipboard");
             }}
           >
