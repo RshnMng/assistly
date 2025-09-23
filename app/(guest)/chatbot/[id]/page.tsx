@@ -171,7 +171,7 @@ function ChatbotPage() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col bg-[#04151F]">
+    <div className="flex flex-col h-screen max-w-3xl mx-auto shadow-2xl bg-[#04151F]">
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="bg-blue-600">
           <form onSubmit={handleInformationSubmit}>
@@ -225,65 +225,61 @@ function ChatbotPage() {
         </DialogContent>
       </Dialog>
 
-      <div className="flex flex-col flex-1 max-w-3xl w-full mx-auto shadow-2xl bg-[#04151F]">
-        {/* Header */}
-        <div className="py-5 px-4 bg-[#407DFB] text-white flex items-center space-x-4">
-          {chatbotData?.name && (
-            <Avatar
-              seed={chatbotData.name}
-              className="h-10 w-10 bg-white rounded-full border-2 border-white"
-            />
-          )}
-          <div>
-            <h1 className="truncate text-lg">{chatbotData?.name}</h1>
-            <p className="text-sm text-gray-300">
-              *Typically replies instantly
-            </p>
-          </div>
+      {/* Header */}
+      <div className="py-5 px-4 bg-[#407DFB] text-white flex items-center space-x-4">
+        {chatbotData?.name && (
+          <Avatar
+            seed={chatbotData.name}
+            className="h-10 w-10 bg-white rounded-full border-2 border-white"
+          />
+        )}
+        <div>
+          <h1 className="truncate text-lg">{chatbotData?.name}</h1>
+          <p className="text-sm text-gray-300">*Typically replies instantly</p>
         </div>
-
-        {/* Message thread */}
-        <div className="flex-1 overflow-y-auto px-4 py-2 bg-blue-200">
-          {chatbotData?.name && (
-            <>
-              <Messages
-                messages={messages}
-                chatbotName={chatbotData.name}
-                chatSessionId={chatId}
-              />
-              <div ref={messagesEndRef} />
-            </>
-          )}
-        </div>
-
-        {/* Input field */}
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex items-center p-3 bg-blue-500 space-x-2 z-50"
-            style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
-          >
-            <FormField
-              control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem className="flex-1">
-                  <FormControl>
-                    <Input
-                      placeholder="Type a message..."
-                      {...field}
-                      className="p-4 bg-blue-100 text-blue-800 font-bold w-full"
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="h-full max-h-12">
-              Send
-            </Button>
-          </form>
-        </Form>
       </div>
+
+      {/* Message thread */}
+      <div className="flex-1 overflow-y-auto px-4 py-2 bg-blue-200 pb-28">
+        {chatbotData?.name && (
+          <>
+            <Messages
+              messages={messages}
+              chatbotName={chatbotData.name}
+              chatSessionId={chatId}
+            />
+            <div ref={messagesEndRef} />
+          </>
+        )}
+      </div>
+
+      {/* Input field */}
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex items-center p-3 bg-blue-500 space-x-2 z-50 sticky bottom-0"
+          style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+        >
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormControl>
+                  <Input
+                    placeholder="Type a message..."
+                    {...field}
+                    className="p-4 bg-blue-100 text-blue-800 font-bold w-full"
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="h-full max-h-12">
+            Send
+          </Button>
+        </form>
+      </Form>
     </div>
   );
 }
