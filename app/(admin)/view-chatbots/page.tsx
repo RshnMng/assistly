@@ -34,7 +34,7 @@ async function ViewChatbots() {
 
   return (
     <>
-      <div className="flex-1 pb-20 p-10">
+      <div className="flex-1 pb-20 p-10 bg-pink-400">
         <h1 className="text-xl lg:text-3xl font-semibold mb-5">
           Active Chatbots
         </h1>
