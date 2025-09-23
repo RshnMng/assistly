@@ -171,7 +171,7 @@ function ChatbotPage() {
   };
 
   return (
-    <div className="flex flex-col w-full h-screen max-w-2xl mx-auto shadow-2xl bg-[#04151F]">
+    <div className="chatdiv flex flex-col w-full h-screen max-w-2xl mx-auto shadow-2xl bg-[#04151F]">
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="bg-blue-600">
           <form onSubmit={handleInformationSubmit}>
