@@ -34,10 +34,11 @@ async function ViewChatbots() {
 
   return (
     <>
-      <div className="flex-1 pb-20 p-10">
+      <div className="flex-1 pb-20 p-10 w-sm">
         <h1 className="text-xl lg:text-3xl font-semibold mb-5">
           Active Chatbots
         </h1>
+
         {sortedChatbotsByUser.length === 0 && (
           <div>
             <p>
@@ -57,7 +58,7 @@ async function ViewChatbots() {
           {sortedChatbotsByUser.map((chatbot) => {
             return (
               <Link key={chatbot.id} href={`edit-chatbot/${chatbot.id}`}>
-                <li className="relative p-10 border rounded-md max-w-1xl bg-white m-3">
+                <li className="relative  border rounded-md m-3  ">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center  m-8">
                       <div className="flex items-center pb-1  flex-col">
@@ -86,7 +87,7 @@ async function ViewChatbots() {
                       Characteristics:{" "}
                     </h3>
 
-                    <ul className="text-sm list-none">
+                    <ul className="w-full flex flex-wrap-reverse gap-2 list-none">
                       {!chatbot.chatbot_characteristics.length && (
                         <p>No characteristics added yet.</p>
                       )}
@@ -94,7 +95,7 @@ async function ViewChatbots() {
                       {chatbot.chatbot_characteristics.map((characteristic) => {
                         return (
                           <li
-                            className=" break-words border-4 border-blue-400 bg-blue-300 p-5 mb-2 text-base rounded-md max-w-2xl"
+                            className=" break-words border-4 border-blue-400 bg-blue-300 p-5 mb-2 text-base rounded-md flex-grow min-w-0 max-w-full"
                             key={characteristic.id}
                           >
                             {characteristic.content}
@@ -103,7 +104,7 @@ async function ViewChatbots() {
                       })}
                     </ul>
 
-                    <div className="bg-blue-200 mt-4 text-center border border-blue-500 rounded-md max-w-2xl">
+                    <div className="bg-blue-200 mt-4 text-center border border-blue-500 rounded-md max-w-2xl mx-auto">
                       <h3 className="italic">No of Sessions:</h3>
                       <p>{chatbot.chat_sessions.length}</p>
                     </div>

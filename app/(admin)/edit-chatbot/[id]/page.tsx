@@ -141,7 +141,7 @@ function EditChatbot() {
   if (!data?.chatbots) return redirect("/view-chatbots");
 
   return (
-    <div className="px-0 md:p-10">
+    <div className="px-0 md:p-10 sm:w-sm md:w-2xl lg:w-3xl xl:w-4xl w-xs">
       <div className="md:sticky md:top-8 z-50 sm:max-w-sm ml-auto space-y-2 md:border p-5 rounded-b-lg md:rounded-lg bg-[#2991EE]">
         <h2 className="text-white text-sm font-bold">Link to Chat</h2>
         <p className="text-sm italic text-white">

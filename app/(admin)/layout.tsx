@@ -17,7 +17,7 @@ async function AdminLayout({
   return (
     <div className="flex flex-col flex-1">
       <Header />
-      <div className="flex flex-col flex-1 md:flex-row bg-gray-100">
+      <div className="flex flex-col flex-1 md:flex-row">
         {/* Sidebar */}
         <Sidebar />
 
