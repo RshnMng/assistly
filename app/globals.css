@@ -126,11 +126,3 @@ body {
   padding: 0;
   overflow: hidden; /* Optional, but prevents weird global scroll */
 }
-
-body {
-  background-color: #04151f;
-}
-
-main {
-  background-color: white;
-}
