@@ -33,7 +33,7 @@ function Messages({
   }, [messages]);
 
   return (
-    <div className=" flex flex-col md:max-w-3xl max-w-[527px] lg:self-center overflow-y-auto bg-blue-100 h-full">
+    <div className=" flex flex-col md:max-w-3xl max-w-[527px] lg:self-center bg-blue-100">
       {messages.map((message) => {
         const isSender = message.sender !== "user";
 
