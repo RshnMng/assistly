@@ -27,13 +27,7 @@ import Messages from "@/app/(admin)/components/Messages";
 import { Chatbot } from "@/types/types";
 import { Message } from "@/types/types";
 import { z } from "zod";
-import {
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  FormControl,
-} from "@/components/ui/form";
+import { FormField, FormItem, FormControl } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
