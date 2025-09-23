@@ -3,7 +3,7 @@ import { BotMessageSquare, SearchIcon, PencilLine } from "lucide-react";
 
 function Sidebar() {
   return (
-    <div className="bg-white text-white p-5">
+    <div className=" text-white p-5">
       <ul className="gap-5 flex md:flex-col">
         <li className="flex-1">
           <Link
