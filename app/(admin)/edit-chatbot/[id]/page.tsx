@@ -164,7 +164,7 @@ function EditChatbot() {
           </Button>
         </div>
       </div>
-      <section className="relative mt-5 bg-blue-200 p-5 md:p-10 rounded-lg">
+      <section className="relative mt-5 bg-blue-200 p-5 md:p-10 rounded-lg max-w-3xl">
         <Button
           variant="destructive"
           className="absolute top-2 right-2 h-8 w-2 cursor-pointer hover:opacity-75"
