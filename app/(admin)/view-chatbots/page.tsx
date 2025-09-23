@@ -94,7 +94,7 @@ async function ViewChatbots() {
                       {chatbot.chatbot_characteristics.map((characteristic) => {
                         return (
                           <li
-                            className=" break-words border-4 border-blue-400 bg-blue-300 p-5 mb-2 text-base rounded-md"
+                            className=" break-words border-4 border-blue-400 bg-blue-300 p-5 mb-2 text-base rounded-md max-w-2xl"
                             key={characteristic.id}
                           >
                             {characteristic.content}
