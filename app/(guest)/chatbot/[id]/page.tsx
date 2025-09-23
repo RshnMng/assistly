@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -44,6 +44,12 @@ function ChatbotPage() {
 
   const [chatbotData, setChatBot] = useState<Chatbot>();
   const [signedIn, setSignedIn] = useState(false);
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const formSchema = z.object({
     message: z.string().min(2, "Your Message is too short!"),
@@ -239,11 +245,14 @@ function ChatbotPage() {
         {/* Message thread */}
         <div className="flex-1 overflow-y-auto px-4 py-2 bg-blue-200">
           {chatbotData?.name && (
-            <Messages
-              messages={messages}
-              chatbotName={chatbotData.name}
-              chatSessionId={chatId}
-            />
+            <>
+              <Messages
+                messages={messages}
+                chatbotName={chatbotData.name}
+                chatSessionId={chatId}
+              />
+              <div ref={messagesEndRef} />
+            </>
           )}
         </div>
 
@@ -251,7 +260,7 @@ function ChatbotPage() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex items-center p-3 bg-blue-500 space-x-2 sticky bottom-0 z-50"
+            className="flex items-center p-3 bg-blue-500 space-x-2 z-50"
             style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
           >
             <FormField
