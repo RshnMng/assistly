@@ -176,7 +176,7 @@ function ChatbotPage() {
         <DialogContent className="bg-blue-600">
           <form onSubmit={handleInformationSubmit}>
             <DialogHeader>
-              <DialogTitle className="text-center text-white font-bold mr-25 border-3 ">
+              <DialogTitle className="text-center text-white font-bold mr-25 mx-auto ">
                 Lets help you out!
               </DialogTitle>
               <DialogDescription className="text-center text-white font-bold">
