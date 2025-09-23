@@ -40,6 +40,7 @@ function CreateChatbot() {
     try {
       const data = await CreateChatbot();
       setName("");
+      console.log(data, "data ");
       router.push(`/edit-chatbot/${data.data.insertChatbots.id}`);
     } catch (error) {
       console.log(error, "error message");
