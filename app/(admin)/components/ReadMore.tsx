@@ -20,11 +20,15 @@ export function ReadMore({ text, chunkSize = 200 }: ReadMoreProps) {
     setVisibleCount((prev) => Math.max(prev - chunkSize, chunkSize));
   };
 
+  const handleReset = () => {
+    setVisibleCount(chunkSize);
+  };
+
   const visibleText = text.slice(0, visibleCount);
 
   return (
     <div className=" whitespace-pre-wrap break-words w-full pt-5 md:p-0">
-      {visibleText + `...`}
+      {isFullyVisible ? visibleText : visibleText + `...`}
 
       <div
         className={
@@ -47,6 +51,15 @@ export function ReadMore({ text, chunkSize = 200 }: ReadMoreProps) {
             onClick={handleShowMore}
           >
             Read more
+          </button>
+        )}
+
+        {visibleCount > chunkSize && (
+          <button
+            className="text-red-600 cursor-pointer hover:underline"
+            onClick={handleReset}
+          >
+            Close
           </button>
         )}
       </div>
