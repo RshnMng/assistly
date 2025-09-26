@@ -23,8 +23,8 @@ export function ReadMore({ text, chunkSize = 200 }: ReadMoreProps) {
   const visibleText = text.slice(0, visibleCount);
 
   return (
-    <div className="whitespace-pre-wrap">
-      {visibleText}
+    <div className=" whitespace-pre-wrap break-words w-full pt-5 md:p-0">
+      {visibleText + `...`}
 
       <div
         className={

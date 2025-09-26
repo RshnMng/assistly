@@ -31,11 +31,11 @@ function Characteristic({
   return (
     <li
       key={characteristic.id}
-      className="relative p-4 bg-white border rounded-md max-w-full break-words"
+      className="relative p-4 border rounded-md break-words bg-white w-full max-w-full overflow-hidden "
     >
       <ReadMore text={characteristic.content} chunkSize={500} />
       <OctagonX
-        className="w-6 h-6 stroke-black fill-red-500 absolute top-1 right-1 cursor-pointer hover:opacity-50 rotate-135"
+        className="w-6 h-6 stroke-black fill-red-500 absolute top-1 right-1 cursor-pointer hover:opacity-50 rotate-135 m-2"
         onClick={() => {
           const promise = handleRemoveCharacteristic();
           toast.promise(promise, {

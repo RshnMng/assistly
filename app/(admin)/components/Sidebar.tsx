@@ -4,7 +4,7 @@ import { BotMessageSquare, SearchIcon, PencilLine } from "lucide-react";
 function Sidebar() {
   return (
     <div className=" text-white p-5 bg-gray-100">
-      <ul className="gap-5 flex md:flex-col">
+      <ul className="gap-5 flex md:flex-col mr-4">
         <li className="flex-1">
           <Link
             href="/create-chatbot"
