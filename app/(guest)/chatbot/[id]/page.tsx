@@ -226,7 +226,7 @@ function ChatbotPage() {
       </Dialog>
 
       {/* Header */}
-      <div className="py-5 px-4 bg-[#407DFB] text-white flex items-center space-x-4">
+      <div className="py-5 px-4 bg-[#407DFB] text-white flex items-center space-x-4 sticky top-0 z-50">
         {chatbotData?.name && (
           <Avatar
             seed={chatbotData.name}
