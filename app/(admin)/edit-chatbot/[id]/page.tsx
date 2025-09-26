@@ -141,7 +141,7 @@ function EditChatbot() {
   if (!data?.chatbots) return redirect("/view-chatbots");
 
   return (
-    <div className="px-0 md:p-10 sm:w-sm md:w-2xl lg:w-3xl xl:w-4xl w-xs">
+    <div className="px-0 md:w-full">
       <div className="md:sticky md:top-8 z-50 sm:max-w-sm ml-auto space-y-2 md:border p-5 rounded-b-lg md:rounded-lg bg-[#2991EE]">
         <h2 className="text-white text-sm font-bold">Link to Chat</h2>
         <p className="text-sm italic text-white">
@@ -162,7 +162,7 @@ function EditChatbot() {
           </Link>
           <Button
             size="sm"
-            className="px-3"
+            className="px-3 mr-2"
             onClick={() => {
               navigator.clipboard.writeText(`${basePath}${url}`);
               toast.success("Copied to clipboard");
@@ -173,10 +173,10 @@ function EditChatbot() {
           </Button>
         </div>
       </div>
-      <section className="relative mt-5 bg-blue-200 p-5 md:p-10 rounded-lg max-w-3xl">
+      <section className="relative mt-5 bg-blue-200 p-5 md:p-10 rounded-lg max-w-lg md:max-w-2xl lg:max-w-4xl">
         <Button
           variant="destructive"
-          className="absolute top-2 right-2 h-8 w-2 cursor-pointer hover:opacity-75"
+          className="absolute top-2 right-4 h-8 w-2 cursor-pointer hover:opacity-75 md:right-2"
           onClick={() => handleDelete(id)}
         >
           x
