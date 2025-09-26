@@ -88,3 +88,8 @@ export interface GetChatSessionMessagesIdVariables {
 export interface MessagesByChatSessionsResponse {
   chat_sessions: ChatSession;
 }
+
+export type ReadMoreProps = {
+  text: string;
+  chunkSize?: number;
+};
